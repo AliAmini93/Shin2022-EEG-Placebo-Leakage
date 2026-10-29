@@ -1,0 +1,93 @@
+{
+  "schema": "paper_a_public_aggregate_summary_v1",
+  "scope": {
+    "dataset": "Shin2022 human EEG release",
+    "participants_total": 10,
+    "participants_affected": 9,
+    "unique_scored_trials": 2188,
+    "evaluation_repeats": 5,
+    "scored_instances_per_scheme": 10940,
+    "ws5f_scored_instances_exposed": 798,
+    "loro_scored_instances_exposed": 1015,
+    "ws5f_exposed_fold_distinct_training_difference_percent_approx": 2.05,
+    "loro_exposed_fold_distinct_training_difference_percent_approx": 11.38
+  },
+  "primary_leaked_minus_placebo": {
+    "TS_LR_WS5F": {
+      "model": "TS+LR",
+      "scheme": "WS-5F",
+      "participants": 9,
+      "mean_pp": 2.548170947884417,
+      "ci95_t_pp": [
+        1.942553818822686,
+        3.153788076946147
+      ],
+      "p_exact": 0.00390625,
+      "p_holm4": 0.015625,
+      "positive_participants": 9
+    },
+    "EEGNet_WS5F": {
+      "model": "EEGNet",
+      "scheme": "WS-5F",
+      "participants": 9,
+      "mean_pp": 3.115216160490201,
+      "ci95_t_pp": [
+        2.229261425212107,
+        4.001170895768295
+      ],
+      "p_exact": 0.00390625,
+      "p_holm4": 0.015625,
+      "positive_participants": 9
+    },
+    "TS_LR_LORO": {
+      "model": "TS+LR",
+      "scheme": "LORO",
+      "participants": 9,
+      "mean_pp": 2.4287460140428583,
+      "ci95_t_pp": [
+        1.758131127711082,
+        3.0993609003746343
+      ],
+      "p_exact": 0.00390625,
+      "p_holm4": 0.015625,
+      "positive_participants": 9
+    },
+    "EEGNet_LORO": {
+      "model": "EEGNet",
+      "scheme": "LORO",
+      "participants": 9,
+      "mean_pp": 3.0871599126496854,
+      "ci95_t_pp": [
+        2.0209859410575213,
+        4.15333388424185
+      ],
+      "p_exact": 0.00390625,
+      "p_holm4": 0.015625,
+      "positive_participants": 9
+    }
+  },
+  "secondary_placebo_minus_clean": {
+    "TS_LR_WS5F": {
+      "mean_pp": 0.17443813823194093,
+      "ci90_t_pp": [
+        -0.3272050973618338,
+        0.6760813738257156
+      ],
+      "frozen_classification": "PRACTICALLY_NULL"
+    },
+    "EEGNet_WS5F": {
+      "mean_pp": -0.4177439532579973,
+      "ci90_t_pp": [
+        -1.1219640302953482,
+        0.2864761237793534
+      ],
+      "frozen_classification": "PRACTICALLY_NULL"
+    }
+  },
+  "interpretation": "One-dataset benchmark-integrity evaluation, not an independently replicated detection method. Row/class/run matching does not remove the small distinct-training-trial imbalance; no fully isolated causal effect of exact-twin memorisation is identified.",
+  "provenance": {
+    "dataset": "Shin2022",
+    "analysis": "Pre-specified R2 reanalysis of previously inspected data",
+    "reporting": "Participant-aggregated outcomes only; no participant-level or raw EEG records"
+  }
+}

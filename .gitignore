@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Local config / secrets
+.env
+.env.*
+*.key
+*.pem
+
+# Raw EEG and participant-level data are never source-controlled
+*.edf
+*.bdf
+*.mat
+*.set
+*.fif
+*.npy
+*.npz
+*.pkl
+*.pickle
+raw_data/
+private/
+participant_data/
+local_inputs/
+*_participant*.json
+*_per_subject*.json
+
+# Generated output, reports and crash dumps
+outputs/
+figures/
+*.pdf
+core
+core.*
+*.log

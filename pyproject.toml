@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "shin2022-eeg-leakage-audit"
+version = "0.1.0"
+description = "Aggregate verification and paired inference for placebo-controlled EEG benchmark leakage"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["numpy>=1.24", "scipy>=1.10"]
+keywords = ["eeg", "benchmark-integrity", "data-leakage", "placebo-control", "reproducibility"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Information Analysis",
+]
+
+[project.scripts]
+shin2022-leakage = "shin2022_leakage.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+shin2022_leakage = ["data/*.json"]
