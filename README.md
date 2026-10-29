@@ -68,6 +68,10 @@ python tools/run.py recompute --input /path/to/local_paired_differences.json
 
 Output is aggregate-only JSON written to standard output; input values are never uploaded or committed. The recompute command supports exact paired sign-flips (up to 20 participants), participant-level t confidence intervals, seeded bootstrap intervals and Holm multiplicity correction. See [Methods](docs/METHODS.md).
 
+## Reproduction of the published model contrast
+
+The [cache-level R2 reproduction pipeline](docs/REPLICATION.md) now includes the frozen path-based fold construction, placebo/train-set-size invariants, Tangent Space + LR / EEGNet-8,2 models and participant-paired inference. These modules read original locally supplied cache/registry files and keep per-participant outputs outside this public repository. Raw BCI2000 import and independent source-to-cache rebuilding are not yet supported; no model re-run is claimed by the addition of code alone.
+
 ## Reproducibility boundary
 
 **Implemented and testable here:** validating curated aggregate outcomes and recomputing paired summary statistics from supplied differences. **Not included yet:** original EEG import/preprocessing, duplicate-identity registry, fold construction, TS+LR training or EEGNet training. Thus, this is **not** an end-to-end replication of the EEG experiments. Claims of full reproducibility require independent execution of those components on source data.
