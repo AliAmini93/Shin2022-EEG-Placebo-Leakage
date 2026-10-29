@@ -2,7 +2,7 @@
 
 **Standalone Python tools for checking placebo-controlled leakage results.**
 
-This repository accompanies the research study *Recording-Level Leakage in a Public EEG Benchmark: A Placebo-Controlled Evaluation*. It provides a small, installable Python package for **verifying the published aggregate results** and **recomputing participant-level statistical contrasts from locally supplied input**. It does not distribute human EEG recordings, participant-level results, or the full EEG model-training pipeline.
+This repository accompanies the research study *Recording-Level Leakage in a Public EEG Benchmark: A Placebo-Controlled Evaluation*. It provides an installable Python package for **verifying aggregate results**, **recomputing participant-level paired contrasts from locally supplied input**, and running the frozen benchmark evaluation on authorized local Shin2022 caches. It does not distribute human EEG recordings, participant-level results or all provenance-audit inputs.
 
 ## Research question
 
@@ -24,11 +24,13 @@ All four primary comparisons were positive for nine affected participants, with 
 ## Repository contents
 
 ```text
-src/shin2022_leakage/        Python package: validation, statistics and CLI
+src/shin2022_leakage/        Python package: aggregate checks, raw-data import and frozen R2 pipeline
 src/shin2022_leakage/data/   Aggregate-only results, included in the package
 tests/                       Deterministic synthetic unit tests
 tools/run.py                 Zero-install entry point for source checkouts
 docs/METHODS.md              Scope, assumptions and limitations
+docs/REPLICATION.md          Cached-data reproduction with privacy safeguards
+docs/RAW_DATA.md             BCI2000 source-to-cache instructions
 pyproject.toml               Package metadata and dependencies
 ```
 
@@ -68,9 +70,13 @@ python tools/run.py recompute --input /path/to/local_paired_differences.json
 
 Output is aggregate-only JSON written to standard output; input values are never uploaded or committed. The recompute command supports exact paired sign-flips (up to 20 participants), participant-level t confidence intervals, seeded bootstrap intervals and Holm multiplicity correction. See [Methods](docs/METHODS.md).
 
+## Reproduction of the published model contrast
+
+The [cache-level R2 reproduction pipeline](docs/REPLICATION.md) now includes the frozen path-based fold construction, placebo/train-set-size invariants, Tangent Space + LR / EEGNet-8,2 models and participant-paired inference. These modules read original locally supplied cache/registry files and keep per-participant outputs outside this public repository. BCI2000 parsing and local score-free cache builders have been ported, but full source-archive verification and an independent register builder are not yet included; no model re-run is claimed by the addition of code alone.
+
 ## Reproducibility boundary
 
-**Implemented and testable here:** validating curated aggregate outcomes and recomputing paired summary statistics from supplied differences. **Not included yet:** original EEG import/preprocessing, duplicate-identity registry, fold construction, TS+LR training or EEGNet training. Thus, this is **not** an end-to-end replication of the EEG experiments. Claims of full reproducibility require independent execution of those components on source data.
+**Implemented:** BCI2000 input reading, score-free trial census, the frozen W1 feature-cache builder, path-keyed trial-fold and placebo construction, TS+LR and EEGNet training, aggregate inference, and numerical verification. The BCI2000 reader and other components have been **synthetically tested**, but the newly assembled end-to-end pipeline has **not been run on original data**, and its equivalence with the frozen R2 output remains unproven. **Still unavailable here:** the original G0-E1r public-archive integrity-register generator, external software provenance verification, and fully independently confirmed raw-file-to-final-result reproduction. Do not call this a verified end-to-end replication until these gates pass on the research workstation.
 
 This was a pre-specified reanalysis of Shin2022 data whose related outcomes had been examined in earlier work; it is not a blind external replication. Other exploratory and external tests are not part of this release.
 

@@ -15,6 +15,10 @@ classifiers = [
   "Topic :: Scientific/Engineering :: Information Analysis",
 ]
 
+[project.optional-dependencies]
+replication-cpu = ["scikit-learn>=1.4", "pyriemann>=0.6"]
+replication = ["scikit-learn>=1.4", "pyriemann>=0.6", "torch>=2.0"]
+
 [project.scripts]
 shin2022-leakage = "shin2022_leakage.cli:main"
 
